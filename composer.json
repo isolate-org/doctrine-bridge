@@ -1,0 +1,38 @@
+{
+    "name": "isolate/doctrine-bridge",
+    "description": "Provides integration for Doctrine with Isolate",
+    "keywords": ["isolate", "orm", "doctrine"],
+    "require": {
+        "php": ">=5.4.0",
+        "doctrine/common": "~2.3",
+        "isolate/isolate": "1.0.*@dev",
+        "isolate/unit-of-work": "1.0.*@dev",
+        "isolate/lazy-objects": "1.0.*@dev"
+    },
+    "require-dev": {
+        "doctrine/orm": "~2.3",
+        "doctrine/mongodb-odm": "1.0.*@dev",
+        "phpspec/phpspec": "2.1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Isolate": "src/",
+            "Isolate\\Tests": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Norbert Orzechowicz",
+            "email": "norbert@orzechowicz.pl"
+        }
+    ]
+}
