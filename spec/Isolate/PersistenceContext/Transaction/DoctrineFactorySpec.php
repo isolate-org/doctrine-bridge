@@ -2,30 +2,40 @@
 
 namespace spec\Isolate\PersistenceContext\Transaction;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\EntityManager;
 use Isolate\Exception\UnsupportedManagerException;
+use Isolate\PersistenceContext;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class DoctrineFactorySpec extends ObjectBehavior
 {
-    function it_creates_orm_transaction_for_entity_manager(EntityManager $entityManager)
+    public function let(ManagerRegistry $managerRegistry, PersistenceContext $persistenceContext)
     {
-        $this->create($entityManager)->shouldReturnAnInstanceOf('Isolate\PersistenceContext\Transaction\Doctrine\ORMTransaction');
+        $persistenceContext->getName()->willReturn(new PersistenceContext\Name('doctrine'));
+        $this->beConstructedWith($managerRegistry);
     }
 
-    function it_create_odm_transaction_for_document_manager(DocumentManager $documentManager)
+    function it_creates_orm_transaction_for_entity_manager(ManagerRegistry $managerRegistry, PersistenceContext $persistenceContext, EntityManager $entityManager)
     {
-        $this->create($documentManager)->shouldReturnAnInstanceOf('Isolate\PersistenceContext\Transaction\Doctrine\ODMTransaction');
+        $managerRegistry->getManager('doctrine')->willReturn($entityManager);
+        $this->create($persistenceContext)->shouldReturnAnInstanceOf('Isolate\PersistenceContext\Transaction\Doctrine\ORMTransaction');
     }
 
-    function it_throws_exception_for_unsupported_object_manager()
+    function it_create_odm_transaction_for_document_manager(ManagerRegistry $managerRegistry, PersistenceContext $persistenceContext, DocumentManager $documentManager)
     {
-        $objectManager = new CustomManager();
+        $managerRegistry->getManager('doctrine')->willReturn($documentManager);
+        $this->create($persistenceContext)->shouldReturnAnInstanceOf('Isolate\PersistenceContext\Transaction\Doctrine\ODMTransaction');
+    }
+
+    function it_throws_exception_for_unsupported_object_manager(ManagerRegistry $managerRegistry, PersistenceContext $persistenceContext)
+    {
+        $managerRegistry->getManager('doctrine')->willReturn(new CustomManager());
         $this->shouldThrow(new UnsupportedManagerException("Manager \"spec\\Isolate\\PersistenceContext\\Transaction\\CustomManager\" is not supported."))
-            ->during("create", [$objectManager]);
+            ->during("create", [$persistenceContext]);
     }
 }
 

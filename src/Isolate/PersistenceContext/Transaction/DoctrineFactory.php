@@ -2,20 +2,35 @@
 
 namespace Isolate\PersistenceContext\Transaction;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Isolate\Exception\UnsupportedManagerException;
+use Isolate\PersistenceContext;
 use Isolate\PersistenceContext\Transaction;
 
-class DoctrineFactory
+class DoctrineFactory implements Factory
 {
     /**
-     * @param ObjectManager $objectManager
+     * @var ManagerRegistry
+     */
+    private $managerRegistry;
+
+    /**
+     * @param ManagerRegistry $managerRegistry
+     */
+    public function __construct(ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+    }
+
+    /**
+     * @param PersistenceContext $context
      * @return Doctrine\ODMTransaction|Doctrine\ORMTransaction
      * @throws UnsupportedManagerException
      */
-    public function create(ObjectManager $objectManager)
+    public function create(PersistenceContext $context)
     {
+        $objectManager = $this->managerRegistry->getManager((string) $context->getName());
         if (interface_exists('Doctrine\ORM\EntityManagerInterface') && is_a($objectManager, 'Doctrine\ORM\EntityManagerInterface')) {
             return new Transaction\Doctrine\ORMTransaction($objectManager);
         }
