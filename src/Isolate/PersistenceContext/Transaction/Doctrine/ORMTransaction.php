@@ -27,6 +27,7 @@ final class ORMTransaction implements Transaction
     public function commit()
     {
         $this->entityManager->flush();
+        $this->entityManager->getConnection()->commit();
     }
 
     /**
