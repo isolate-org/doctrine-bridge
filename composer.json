@@ -6,12 +6,11 @@
         "php": ">=5.4.0",
         "doctrine/common": "~2.3",
         "isolate/isolate": "1.0.*@dev",
-        "isolate/unit-of-work": "1.0.*@dev",
-        "isolate/lazy-objects": "1.0.*@dev"
+        "isolate/unit-of-work": "1.0.*@dev"
     },
     "require-dev": {
         "doctrine/orm": "~2.3",
-        "doctrine/mongodb-odm": "1.0.*@dev",
+        "doctrine/mongodb-odm": "1.0.*",
         "phpspec/phpspec": "2.1.*"
     },
     "autoload": {
