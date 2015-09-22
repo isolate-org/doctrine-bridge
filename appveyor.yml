@@ -1,7 +1,7 @@
 build: false
 shallow_clone: true
 platform: x86
-clone_folder: c:\projects\isolate\isolate
+clone_folder: c:\projects\isolate\doctrine-bridge
 
 init:
   - SET COMPOSER_NO_INTERACTION=1
@@ -14,9 +14,10 @@ install:
   - echo extension=php_curl.dll >> php.ini
   - echo extension_dir=ext >> php.ini
   - SET PATH=C:\tools\php;%PATH%
-  - cd c:\projects\isolate\isolate
+  - cd c:\projects\isolate\doctrine-bridge
   - appveyor DownloadFile https://getcomposer.org/composer.phar
   - php composer.phar update --prefer-source --no-progress --ansi
 
 test_script:
+  - cd c:\projects\isolate\doctrine-bridge
   - bin\phpspec run --format=dot --ansi --ignore-platform-reqs
