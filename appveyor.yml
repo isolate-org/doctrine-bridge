@@ -16,8 +16,8 @@ install:
   - SET PATH=C:\tools\php;%PATH%
   - cd c:\projects\isolate\doctrine-bridge
   - appveyor DownloadFile https://getcomposer.org/composer.phar
-  - php composer.phar update --prefer-source --no-progress --ansi
+  - php composer.phar update --prefer-source --no-progress --ansi --ignore-platform-reqs
 
 test_script:
   - cd c:\projects\isolate\doctrine-bridge
-  - bin\phpspec run --format=dot --ansi --ignore-platform-reqs
+  - bin\phpspec run --format=dot --ansi 
