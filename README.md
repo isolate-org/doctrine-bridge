@@ -1,6 +1,7 @@
 # Isolate Doctrine Bridge
 
 [![Build Status](https://travis-ci.org/isolate-org/doctrine-bridge.svg?branch=master)](https://travis-ci.org/isolate-org/doctrine-bridge)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/i68oyulumsfy6xg9/branch/master?svg=true)](https://ci.appveyor.com/project/norzechowicz/doctrine-bridge/branch/master)
 [![Latest Stable Version](https://poser.pugx.org/isolate/doctrine-bridge/version.svg)](https://packagist.org/packages/isolate/doctrine-bridge)
 [![Latest Unstable Version](https://poser.pugx.org/isolate/doctrine-bridge/v/unstable.svg)](//packagist.org/packages/isolate/doctrine-bridge)
 [![Total Downloads](https://poser.pugx.org/isolate/doctrine-bridge/downloads.svg)](https://packagist.org/packages/isolate/doctrine-bridge)
