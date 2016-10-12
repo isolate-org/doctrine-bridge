@@ -19,6 +19,6 @@ If you have any problems or questions your can always contact us on Twitter, jus
 
 All Isolate components are released under [MIT license]
 
-[Documentation]: http://docs.isolate-project.org/en/latest/doctrine/bridge/index.html
+[Documentation]: http://docs.isolate-project.org/en/latest/extensions/doctrine/bridge/index.html
 [@isolate_php]: https://twitter.com/isolate_php
 [MIT license]: LICENSE
